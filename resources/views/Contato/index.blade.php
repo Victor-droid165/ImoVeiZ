@@ -1,5 +1,5 @@
 @extends('Layouts.app')
-@section('title', 'ImoVeiZ! | Contato')
+@section('title', 'Contato')
 @section('body')
     <div class="container row col-11 me-auto ms-auto mt-5 position-flex justify-content-center
     align-items-center">
