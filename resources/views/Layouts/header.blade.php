@@ -1,8 +1,11 @@
+<?php 
+    $routeName = Route::current()->getName(); 
+?>
 <header>
-    <div class="sticky-top">
+    <div class="sticky-top myHeaderNav">
         <nav class="navbar navbar-expand-lg mb-auto navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand ms-3 mt-2 mt-lg-0" href="{{route('home')}}">
+                <a name = "a-logo" class="navbar-brand ms-3 mt-2 mt-lg-0" href="{{route('home')}}">
                     <x-application-side-logo/>
                     ImoVeiZ
                 </a>
@@ -19,14 +22,18 @@
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
                         <li class="nav-item px-3">
-                            <a class="nav-link" aria-current="page" href="{{route('quem-somos')}}"
+                            <a class="nav-link {{ $routeName ==
+                                'quem-somos' ? 'active' : ''  }}"
+                            aria-current="page" href="{{route('quem-somos')}}"
                             >Quem Somos</a>
                         </li>
                         <li class="nav-item px-3">
-                            <a class="nav-link" href="{{route('corretores')}}">Corretores</a>
+                            <a class="nav-link {{ $routeName ==
+                                'corretores' ? 'active' : ''  }}" href="{{route('corretores')}}">Corretores</a>
                         </li>
                         <li class="nav-item px-3">
-                            <a class="nav-link" href="{{route('contato')}}">Contato</a>
+                            <a class="nav-link {{ $routeName ==
+                                'contato' ? 'active' : ''  }}" href="{{route('contato')}}">Contato</a>
                         </li>
                     </ul>
                     @guest
