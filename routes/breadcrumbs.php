@@ -32,7 +32,7 @@ Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
     $trail->push('Login', route('login'));
 });
 
-// Home > Login
+// Home > Registro
 Breadcrumbs::for('register', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Registro', route('register'));

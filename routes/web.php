@@ -17,8 +17,13 @@ use App\Http\Controllers\LayoutController;
 Route::get('/', [LayoutController::class, 'index'])
                 ->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/quem-somos', [LayoutController::class, 'quemSomos'])
+                ->name('quem-somos');
+
+Route::get('/contato', [LayoutController::class, 'contato'])
+                ->name('contato');
+
+Route::get('/corretores', [LayoutController::class, 'corretores'])
+                ->name('corretores');
 
 require __DIR__.'/auth.php';

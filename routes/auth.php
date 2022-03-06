@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialAccounts\FaceBookController;
+use App\Http\Controllers\Auth\SocialAccounts\GithubController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -9,8 +11,6 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LayoutController;
-use App\Http\Controllers\FaceBookController;
-use App\Http\Controllers\GithubController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -21,6 +21,19 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
+
+    Route::prefix('login')->name('login.')->group( function(){
+
+        Route::prefix('github')->name('github.')->group( function(){
+            Route::get('auth', [GithubController::class, 'loginUsingGithub'])->name('auth');
+            Route::get('callback', [GithubController::class, 'callbackFromGithub'])->name('callback');
+        });
+
+        Route::prefix('facebook')->name('facebook.')->group( function(){
+            Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('auth');
+            Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+        });
+    });          
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
@@ -35,20 +48,6 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
-    Route::get('/quem-somos', [LayoutController::class, 'quemSomos'])
-                ->name('quem-somos');
-    Route::get('/contato', [LayoutController::class, 'contato'])
-                ->name('contato');
-    Route::get('/corretores', [LayoutController::class, 'corretores'])
-                ->name('corretores');
-    Route::prefix('login/github')->name('github.')->group( function(){
-        Route::get('auth', [GithubController::class, 'loginUsingGithub'])->name('login');
-        Route::get('callback', [GithubController::class, 'callbackFromGithub'])->name('callback');
-    });
-    Route::prefix('login/facebook')->name('facebook.')->group( function(){
-        Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
-        Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
-    });
 });
 
 Route::middleware('auth')->group(function () {
