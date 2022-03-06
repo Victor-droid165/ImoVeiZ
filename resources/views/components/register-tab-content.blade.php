@@ -14,9 +14,9 @@
         <label for="floatingInputEmail">Endereço de e-mail</label>
     </div>
     <div class="form-floating mb-3">
-        <input type="password" class="form-control rounded-4" id="floatingPassword"
+        <input type="password" class="form-control rounded-4" id="floatingPasswordRegister"
         placeholder="Senha" required>
-        <label for="floatingPassword">Senha</label>
+        <label for="floatingPasswordRegister">Senha</label>
     </div>
     <div class="form-floating mb-3">
         <input type="password" class="form-control rounded-4" id="floatingPasswordConfirmation"

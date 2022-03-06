@@ -1,7 +1,7 @@
 @extends('Layouts.app')
 @section('title', 'Corretores')
 @section('body')
-<div class="row row-cols-11 m-auto g-4 justify-content-center align-items-center">
+<div class="row row-cols-11 m-auto pt-3 pb-5 g-4 justify-content-center align-items-center">
       <div class="col">
         <div class="card justify-content-center align-items-center">
           <img src="{{asset('/assets/img/corretor1.jpg')}}" class="card-img-top" alt="...">

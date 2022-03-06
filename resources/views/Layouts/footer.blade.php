@@ -1,4 +1,4 @@
-<footer class="bd-footer py-5 mt-5 bg-light">
+<footer class="bd-footer py-5 bg-light border-top">
   <div class="container py-5">
     <div class="row">
       <div class="col-2">
@@ -38,12 +38,12 @@
         </li>
         <li class="ms-3">
             <a class="link-dark" href="#">
-                <img src="https://img.icons8.com/ios-filled/50/000000/facebook-circled--v2.png" width="36" height="36" />
+              <img src="https://img.icons8.com/windows/32/000000/twitter.png" width="36" height="36" />
             </a>
         </li>
         <li class="ms-3">
             <a class="link-dark" href="#">
-                <img src="https://img.icons8.com/ios-filled/50/000000/facebook-circled--v2.png" width="36" height="36" />
+                <img src="https://img.icons8.com/windows/32/000000/linkedin-2.png" width="36" height="36" />
             </a>
         </li>    
     </ul>
