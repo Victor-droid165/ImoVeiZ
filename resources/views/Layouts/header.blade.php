@@ -39,9 +39,8 @@
                     @guest
                         <div class="d-flex align-items-center">
                             <a href="{{route('login')}}" class="btn btn-outline-primary px-3 me-2"
-                            role="button">Login</a>
-                            <a href="{{route('register')}}" class="btn btn-outline-primary me-3"
-                            role="button">Registre-se de graça</a>
+                            role="button" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+                            @extends('components.login-modal')
                         </div>
                     @endguest
                     @auth

@@ -48,5 +48,5 @@ Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
 // Page not found
 Breadcrumbs::for('errors.404', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Page Not Found');
+    $trail->push('Página não Encontrada');
 });
