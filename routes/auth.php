@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\FaceBookController;
+use App\Http\Controllers\GithubController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -39,6 +41,14 @@ Route::middleware('guest')->group(function () {
                 ->name('contato');
     Route::get('/corretores', [LayoutController::class, 'corretores'])
                 ->name('corretores');
+    Route::prefix('login/github')->name('github.')->group( function(){
+        Route::get('auth', [GithubController::class, 'loginUsingGithub'])->name('login');
+        Route::get('callback', [GithubController::class, 'callbackFromGithub'])->name('callback');
+    });
+    Route::prefix('login/facebook')->name('facebook.')->group( function(){
+        Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
+        Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+    });
 });
 
 Route::middleware('auth')->group(function () {

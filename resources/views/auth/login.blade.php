@@ -1,3 +1,6 @@
+@extends('Layouts.app')
+@section('title', 'Login')
+@section('body')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -39,7 +42,16 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-
+            <div class="block mt-4">
+                <a href="{{ route('github.login') }}" class="btn btn-github btn-user btn-block">
+                    <i class="fab fa-github fa-fw"></i>
+                    Entrar com GitHub
+                </a>
+                <a href="{{ route('facebook.login') }}" class="btn btn-facebook btn-user btn-block">
+                    <i class="fab fa-facebook-f fa-fw"></i>
+                    Entrar com Facebook
+                </a>
+            </div>
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
@@ -54,3 +66,4 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+@endsection

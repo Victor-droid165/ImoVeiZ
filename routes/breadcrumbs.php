@@ -26,6 +26,19 @@ Breadcrumbs::for('corretores', function (BreadcrumbTrail $trail) {
     $trail->push('Corretores', route('corretores'));
 });
 
+// Home > Login
+Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Login', route('login'));
+});
+
+// Home > Login
+Breadcrumbs::for('register', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Registro', route('register'));
+});
+
+
 // Home > Blog > [Category]
 Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
     $trail->parent('blog');
