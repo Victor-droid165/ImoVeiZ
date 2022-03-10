@@ -3,26 +3,47 @@
 
 <form method="POST" action="{{ route('register') }}">
     @csrf
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control rounded-4" id="floatingInputName"
-        placeholder="Seu Nome" required>
-        <label for="floatingInputName">Seu Nome</label>
+
+    <!-- Name -->
+    <div>
+        <x-label for="name" :value="__('Name')" />
+
+        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
     </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control rounded-4" id="floatingInputEmail"
-        placeholder="name@example.com" required>
-        <label for="floatingInputEmail">Endereço de e-mail</label>
+
+    <!-- Email Address -->
+    <div class="mt-4">
+        <x-label for="email" :value="__('Email')" />
+
+        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
     </div>
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control rounded-4" id="floatingPasswordRegister"
-        placeholder="Senha" required>
-        <label for="floatingPasswordRegister">Senha</label>
+
+    <!-- Password -->
+    <div class="mt-4">
+        <x-label for="password" :value="__('Password')" />
+
+        <x-input id="password" class="block mt-1 w-full"
+                        type="password"
+                        name="password"
+                        required autocomplete="new-password" />
     </div>
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control rounded-4" id="floatingPasswordConfirmation"
-        placeholder="Senha" required>
-        <label for="floatingPasswordConfirmation">Confirmação de Senha</label>
+
+    <!-- Confirm Password -->
+    <div class="mt-4">
+        <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+        <x-input id="password_confirmation" class="block mt-1 w-full"
+                        type="password"
+                        name="password_confirmation" required />
     </div>
-    <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Registre-se</button>
-    <small class="text-muted">Ao se registrar, você concorda com os Termos de Uso</small>
+
+    <div class="flex items-center justify-end mt-4">
+        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+            {{ __('Already registered?') }}
+        </a>
+
+        <x-button class="ml-4">
+            {{ __('Register') }}
+        </x-button>
+    </div>
 </form>

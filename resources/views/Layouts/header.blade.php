@@ -1,6 +1,6 @@
-<?php 
+@php
     $routeName = Route::current()->getName(); 
-?>
+@endphp
 <header>
     <div class="sticky-top myHeaderNav">
         <nav class="navbar navbar-expand-lg mb-auto navbar-light bg-light">

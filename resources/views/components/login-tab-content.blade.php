@@ -6,18 +6,24 @@
 
 <form method="POST" action="{{ route('login') }}">
     @csrf
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control rounded-4" id="floatingInput"
-        placeholder="name@example.com" required>
-        <label for="floatingInput">Endereço de e-mail</label>
+    <!-- Email Address -->
+    <div>
+        <x-label for="email" :value="__('Email')" />
+
+        <x-input id="email" class="block mt-1 w-full" type="email"
+        name="email" :value="old('email')" placeholder="exemplo@gmail.com" required autofocus />
     </div>
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control rounded-4" id="floatingPassword"
-        placeholder="Password" required>
-        <label for="floatingPassword">Senha</label>
+
+    <!-- Password -->
+    <div class="mt-4">
+        <x-label for="password" :value="__('Password')" />
+        <x-input id="password" class="block mt-1 w-full"
+                        type="password"
+                        name="password"
+                        required autocomplete="current-password" />
     </div>
-    <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Entrar</button>
-    <!--<small class="text-muted">Ao , you agree to the terms of use.</small>-->
+
+    <!-- Remember Me -->
     <div class="block mt-4">
         <label for="remember_me" class="inline-flex items-center">
             <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
@@ -41,4 +47,16 @@
         <i class="fab fa-github fa-fw"></i>
         Entrar com Github
     </a>
+    <div class="flex items-center justify-end mt-4">
+        @if (Route::has('password.request'))
+            <a class="text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                {{ __('Forgot your password?') }}
+            </a>
+        @endif
+
+        <x-button class="ml-3">
+            {{ __('Log in') }}
+        </x-button>
+    </div>
 </form>
+

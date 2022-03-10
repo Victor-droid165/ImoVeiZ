@@ -32,9 +32,9 @@
     </head>
     <body>
         @include('Layouts.header')
-        <div>
+        <main>
             @yield('body')
-        </div>
+        </main>
         @include('Layouts.footer')
     </body>
 </html>
