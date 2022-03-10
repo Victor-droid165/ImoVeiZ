@@ -1914,3 +1914,7 @@ a.socialIcon:hover,
 .socialCircle {
     background-color: #D3D3D3;
 }
+
+.breadcrumb-item+.breadcrumb-item::before {
+    padding-top: .5rem;
+}

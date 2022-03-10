@@ -23257,3 +23257,12 @@ process.umask = function() { return 0; };
 /******/ 	
 /******/ })()
 ;
+function show_more(tipo) {
+  document.getElementById("registerAsDiv").classList.add('d-none');
+  document.getElementById("registerAsTitle").innerHTML = tipo[0].toUpperCase() + tipo.slice(1);
+}
+function show_less() {
+  document.getElementById("registerAsDiv").classList.remove('d-none');
+  document.getElementById("registerForm").classList.remove('show');
+  document.getElementById("registerAsTitle").innerHTML = "";
+}
