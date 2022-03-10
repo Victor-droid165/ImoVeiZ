@@ -38,6 +38,13 @@ Breadcrumbs::for('password.request', function (BreadcrumbTrail $trail) {
     $trail->push('Esqueci minha senha', route('password.request'));
 });
 
+// Home > Login > Esqueci Minha Senha > Resetar senha
+Breadcrumbs::for('password.reset', function (BreadcrumbTrail $trail, String $token, String $email) {
+    $trail->parent('password.request');
+    $trail->push('Resetar senha', route('password.reset', ['token' => $token, 
+    'email' => $email]));
+});
+
 // Home > Registro
 Breadcrumbs::for('register', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

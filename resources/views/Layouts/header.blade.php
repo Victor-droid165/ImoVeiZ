@@ -82,7 +82,11 @@
         @if(!Request::is('/'))
             <div class = "page-title-inner bg-light border">
                 <div class="container">
-                    {{Breadcrumbs::render(Route::current()->getName())}}
+                    @if(Route::current()->getName() == 'password.reset')
+                        {{Breadcrumbs::render(Route::current()->getName(), Request::route('token'), Request::get('email'))}}
+                    @else
+                        {{Breadcrumbs::render(Route::current()->getName())}}
+                    @endif
                     <!--<div class="page-title-content container">
                         <h1 class="display-6 fw-bold">@yield('title')</h1>
                     </div>-->

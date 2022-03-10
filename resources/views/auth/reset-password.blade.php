@@ -1,4 +1,6 @@
-<x-guest-layout>
+@extends('Layouts.app')
+@section('title', 'Resetar senha')
+@section('body')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -13,13 +15,13 @@
             @csrf
 
             <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+            <input type="hidden" name="token" value="{{$token}}">
 
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $email)" required autofocus />
             </div>
 
             <!-- Password -->
@@ -45,4 +47,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+@endsection

@@ -4,15 +4,14 @@
             <ol class="breadcrumb m-0">
                 @foreach ($breadcrumbs as $breadcrumb)
                     @if (!is_null($breadcrumb->url) && !$loop->last)
-                        <li class="breadcrumb-item">
+                        <li class="breadcrumb-item ">
                             <a class="nav-link" href="{{ $breadcrumb->url }}" style="color: #81acec ">
                                 {{ $breadcrumb->title }}
                             </a>
                         </li>
                     @else
-                        <li class="breadcrumb-item nav-link disabled">
-                            <a class="fw-bold nav-link" style="padding-bottom: 0;
-                            padding-top: 0; color: #05457d ">
+                        <li class="breadcrumb-item nav-link disabled" style="padding-top:0">
+                            <a class="fw-bold nav-link" style=" color: #05457d ">
                                 {{ $breadcrumb->title }}
                             </a >
                         </li>
