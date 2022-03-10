@@ -32,6 +32,12 @@ Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
     $trail->push('Login', route('login'));
 });
 
+// Home > Login > Esqueci Minha Senha
+Breadcrumbs::for('password.request', function (BreadcrumbTrail $trail) {
+    $trail->parent('login');
+    $trail->push('Esqueci minha senha', route('password.request'));
+});
+
 // Home > Registro
 Breadcrumbs::for('register', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
