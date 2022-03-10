@@ -1,8 +1,12 @@
+@php
+  $role = '';
+@endphp
+
 <!-- Validation Errors -->
 <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 <div id="registerAsDiv" class="list-group">
-  <a href="#registerForm" onclick="show_more('admin');"
+  <a href="#registerForm" onclick="show_more('admin');@php $role='admin'; @endphp"
   data-bs-toggle="collapse" class="list-group-item list-group-item-action d-flex gap-3 py-3"
   aria-current="true">
     <img src="{{asset('assets/img/gerente.png')}}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
@@ -13,7 +17,7 @@
       </div>
     </div>
   </a>
-  <a href="#registerForm" onclick="show_more('corretor');"
+  <a href="#registerForm" onclick="show_more('corretor');@php $role='corretor'; @endphp"
   data-bs-toggle="collapse" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
     <img src="{{asset('assets/img/corretor-de-imoveis.png')}}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
@@ -23,7 +27,7 @@
       </div>
     </div>
   </a>
-  <a href="#registerForm" onclick="show_more('user');"
+  <a href="#registerForm" onclick="show_more('user');@php $role='user'; @endphp"
   data-bs-toggle="collapse" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
     <img src="{{asset('assets/img/user.png')}}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
     <div class="d-flex gap-2 w-100 justify-content-between">
@@ -35,7 +39,7 @@
   </a>
 </div>
 
-<form id="registerForm" class="collapse" method="POST" action="{{ route('register') }}">
+<form id="registerForm" class="collapse" method="POST" action="{{ route('register', ['role' => $role]) }}">
     @csrf
 
     <div class="dropdown container pb-3">
@@ -86,3 +90,15 @@
         </x-button>
     </div>
 </form>
+
+<script>
+  function show_less() {
+    document.getElementById("registerAsDiv").classList.remove('d-none');
+    document.getElementById("registerForm").classList.remove('show');
+    document.getElementById("registerAsTitle").innerHTML = "";
+  }
+  function show_more(role) {
+    document.getElementById("registerAsDiv").classList.add('d-none');
+    document.getElementById("registerAsTitle").innerHTML = role[0].toUpperCase() + role.slice(1);
+  }
+</script>
