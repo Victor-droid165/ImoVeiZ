@@ -17,23 +17,21 @@
                     <!-- Row -->
                     <div class="row no-gutters">
                         <div class="col-md-5 pro-pic" style=" center center no-repeat">
-                        <img id="avatar1" src="{{asset('assets/img/lorena.jpeg')}}"/>   
-                        <canvas id="Canvas1" width="230px" height="230px"
-                        style="border:1px solid;">
-                        </canvas>
-                            <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
+                            <img id="avatar1" src="{{asset('assets/img/lorena.jpeg')}}"/>   
+                            <canvas id="Canvas1" width="230px" height="230px"
+                            style="border:1px solid;">
+                            </canvas>
                         </div>
                         <div class="col-md-7 bg-white">
-                            <div class="p-4">
-                                <h6 class="mb-3 mt-3">Lorena Albuquerque</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <div class="p-3">
+                                <div class="mb-3">
+                                    <h6>Lorena Albuquerque</h6>
+                                    <small class="text-muted">Desenvolvedor e CEO</small>
+                                </div>
+                                <p>
+                                    Lorena é estudante do 3º ano do curso Técnico em Informática Integrado ao Ensino Médio
+                                    no IFPB-CG. 
+                                </p>
                                 <div class="col-md-12 text-center">
                                     <ul class="social-network social-circle">
                                         <li><a href="#" class="icoFacebook socialCircle" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -52,23 +50,21 @@
                     <!-- Row -->
                     <div class="row no-gutters card-shadow">
                         <div class="col-md-5 pro-pic" style=" center center no-repeat">
-                        <img id="avatar2" src="{{asset('assets/img/pedro.jpeg')}}"/>   
-                        <canvas id="Canvas2" width="230px" height="230px"
-                        style="border:1px solid;">
-                        </canvas>
-                        <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
+                            <img id="avatar2" src="{{asset('assets/img/pedro.jpeg')}}"/>   
+                            <canvas id="Canvas2" width="230px" height="230px"
+                                style="border:1px solid;">
+                            </canvas>
                         </div>
                         <div class="col-md-7 bg-white">
-                            <div class="p-4">
-                                <h6 class="mb-3 mt-3">Pedro Lôbo</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <div class="p-3">
+                                <div class="mb-3">
+                                    <h6>Pedro Lôbo</h6>
+                                    <small class="text-muted">Desenvolvedor e CEO</small>
+                                </div>
+                                <p>
+                                    Pedro é estudante do 3º ano do curso Técnico em Informática Integrado ao Ensino Médio
+                                    no IFPB-CG. 
+                                </p>
                                 <div class="col-md-12 text-center">
                                     <ul class="social-network social-circle">
                                         <li><a href="#" class="icoFacebook socialCircle" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -83,29 +79,27 @@
                 </div>
             </div> <!-- column  -->
         </div>
-        <div class="row">
-            <!-- column  -->
+        <div class="row justify-content-center">
             <div class="col-lg-6">
-                <div class="card card-shadow border-0 mb-4">
+                <div class="card shadow border-0 mb-4">
                     <!-- Row -->
-                    <div class="row no-gutters shadow">
+                    <div class="row no-gutters">
                         <div class="col-md-5 pro-pic" style="center center no-repeat">
-                        <img id="avatar3" src="{{asset('assets/img/victor.jpeg')}}"/>   
-                        <canvas id="Canvas3" width="230px" height="230px"
-                        style="border:1px solid;">    
-                            <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1 socialCircle"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
+                            <img id="avatar3" src="{{asset('assets/img/victor.jpeg')}}"/>   
+                            <canvas id="Canvas3" width="230px" height="230px"
+                            style="border:1px solid;">
+                            </canvas>
                         </div>
                         <div class="col-md-7 bg-white">
-                            <div class="p-4">
-                                <h6 class="mb-3 mt-3">Victor Emanuel</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <div class="p-3">
+                                <div class="mb-3">
+                                    <h6>Victor Emanuel</h6>
+                                    <small class="text-muted">Desenvolvedor e CEO</small>
+                                </div>
+                                <p>
+                                    Victor é estudante do 3º ano do curso Técnico em Informática Integrado ao Ensino Médio
+                                    no IFPB-CG. 
+                                </p>
                                 <div class="col-md-12 text-center">
                                     <ul class="social-network social-circle">
                                         <li>
@@ -138,9 +132,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- Row -->
                 </div>
-            </div>
+            </div> <!-- column  -->
         </div>
     </div>
 </div>
