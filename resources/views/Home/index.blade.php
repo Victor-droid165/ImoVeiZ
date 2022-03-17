@@ -110,5 +110,6 @@
         </div>
       </div>
     </div>
+    <x-fab-button href="{{route('form_criar_anuncio')}}"></x-fab-button>
     <hr>
 @endsection

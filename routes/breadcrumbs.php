@@ -51,6 +51,12 @@ Breadcrumbs::for('register', function (BreadcrumbTrail $trail) {
     $trail->push('Registro', route('register'));
 });
 
+// Home > Criar Anúncio
+Breadcrumbs::for('form_criar_anuncio', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Criar Anúncio', route('form_criar_anuncio'));
+});
+
 
 // Home > Blog > [Category]
 Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
