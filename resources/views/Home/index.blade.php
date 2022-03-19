@@ -32,14 +32,18 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 col-11 m-auto">
+    <div class="row justify-content-center row-cols-1 row-cols-md-3 g-4 col-11 m-auto">
       @foreach($anuncios as $anuncio)
         <div class="col">
           <div class="card text-center" style="width: 20vw;">
+            <h5 class="card-header">
+              {{$anuncio->categoria}}
+            </h5>
             <div class="ratio ratio-1x1">
               <img src="{{Storage::url(''). $anuncio->imagem}}" class="card-img-top"
               alt="Anúncio de Imóvel">
             </div>
+            
             <div class="card-body">
               <h5 class="card-title">{{$anuncio->titulo}}</h5>
               <p class="card-text">{{$anuncio->descricao}}</p>
@@ -47,7 +51,7 @@
             <div class="card-footer text-muted">
               {{ucfirst(Carbon\Carbon::parse($anuncio->created_at)->diffForHumans())}}
             </div>
-            <a href="#" class="stretched-link"></a>
+            <a href="{{route('anuncio-info', ['anuncio' => $anuncio->id]);}}" class="stretched-link"></a>
           </div>
         </div>
       @endforeach

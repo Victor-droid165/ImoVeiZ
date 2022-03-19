@@ -80,7 +80,17 @@ class AnuncioController extends Controller
      */
     public function show(Anuncio $anuncio)
     {
-        //
+        $is_apartamento = $anuncio->imovel::class == "App\Models\Apartamento";
+        $is_fazenda = $anuncio->imovel::class == "App\Models\Fazenda";
+        $is_terreno = $anuncio->imovel::class == "App\Models\Terreno";
+        $is_casa = $anuncio->imovel::class == "App\Models\Casa";
+        return view('Anuncios.info', compact([
+            'anuncio', 
+            'is_apartamento', 
+            'is_fazenda', 
+            'is_terreno',
+            'is_casa'
+        ]));
     }
 
     /**

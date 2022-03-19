@@ -24,13 +24,21 @@ class CriadorDeAnuncio{
         $cidade = $request->cidade;
         $estado = $request->estado;
         $imagem = $request->file("imagem")->store("imovel");
+        $request->mergeIfMissing([
+            'luz' => "off",
+            'agua' =>"off",
+            'casa' =>"off",
+            'plantacoes' =>"off",
+            'animais' =>"off",
+        ]);
         DB::transaction( function () use ($titulo, $descricao, $categoria, $tipo,
         $anunciante, $rua, $numero_rua, $bairro, $cep, $cidade, $estado,
         $criadorDeImovel, $request, $imagem,  &$anuncio){
             $anuncio = $anunciante->anuncios()->create([
                 'titulo'    => $titulo,
                 'descricao' => $descricao,
-                'imagem'    => $imagem
+                'imagem'    => $imagem,
+                'categoria' => $categoria
             ]);
             $imovel = $criadorDeImovel->createTipoImovel($tipo, $request->except('tipo'), $anuncio);
             $endereco = $imovel->endereco()->create([
@@ -40,10 +48,6 @@ class CriadorDeAnuncio{
                 'cep' => $cep,
                 'cidade' => $cidade,
                 'estado' => $estado
-            ]);
-            $categoria = $anuncio->categoria()->create([
-                'nome' => $categoria,
-                'descricao' => $categoria . " de Imóveis",
             ]);
         });
         return $anuncio;

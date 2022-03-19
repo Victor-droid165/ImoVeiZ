@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\AnuncioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,8 @@ Route::get('/contato', [LayoutController::class, 'contato'])
 
 Route::get('/corretores', [LayoutController::class, 'corretores'])
                 ->name('corretores');
+
+Route::get('/anuncio/{anuncio}', [AnuncioController::class, 'show'])
+                ->name('anuncio-info');
 
 require __DIR__.'/auth.php';

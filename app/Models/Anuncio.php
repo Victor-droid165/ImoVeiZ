@@ -14,15 +14,12 @@ class Anuncio extends Model
     protected $fillable = [
         'titulo',
         'descricao',
-        'imagem'
+        'imagem',
+        'categoria'
     ];
 
     public function autor(){
         return $this->belongsTo(User::class, 'anuncio_id', 'id');
-    }
-
-    public function categoria(){
-        return $this->hasOne(Categoria::class, 'anuncio_id', 'id');
     }
 
     public function imovel(){

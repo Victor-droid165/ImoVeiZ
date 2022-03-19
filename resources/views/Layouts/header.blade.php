@@ -84,6 +84,8 @@
                 <div class="container">
                     @if(Route::current()->getName() == 'password.reset')
                         {{Breadcrumbs::render(Route::current()->getName(), Request::route('token'), Request::get('email'))}}
+                    @elseif(Route::current()->getName() == 'anuncio-info')
+                        {{Breadcrumbs::render(Route::current()->getName(), Request::route('anuncio'))}}
                     @else
                         {{Breadcrumbs::render(Route::current()->getName())}}
                     @endif

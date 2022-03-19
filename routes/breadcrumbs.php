@@ -2,6 +2,7 @@
 
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use App\Models\Anuncio;
 
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
@@ -58,10 +59,10 @@ Breadcrumbs::for('form_criar_anuncio', function (BreadcrumbTrail $trail) {
 });
 
 
-// Home > Blog > [Category]
-Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category));
+// Home > [Anuncio]
+Breadcrumbs::for('anuncio-info', function (BreadcrumbTrail $trail, Anuncio $anuncio) {
+    $trail->parent('home');
+    $trail->push($anuncio->titulo, route('anuncio-info', $anuncio));
 });
 
 // Page not found

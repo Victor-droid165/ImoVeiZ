@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('imoveis', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('base_id')->unsigned();
+            $table->bigInteger('base_id')->unsigned()->index();
             $table->double('valor');
             $table->foreignId('anuncio_id')->constrained('anuncios')->onDelete('cascade');
             $table->timestamps();
