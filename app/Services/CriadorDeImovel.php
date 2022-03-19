@@ -19,7 +19,7 @@ class CriadorDeImovel{
     public function createTipoImovel(string $tipo, $inputs, Anuncio $anuncio) : Imovel{
         if($tipo == "Apartamento"){
             $apartamento = new Apartamento([
-                'valor' => 500,
+                'valor' => $inputs['output'],
                 'anuncio_id' => $anuncio->id,
                 'andar' => $inputs['andar'],
                 'nome_predio' => $inputs['nome_predio'],
@@ -30,7 +30,7 @@ class CriadorDeImovel{
         }
         if($tipo == "Casa"){
             $casa = new Casa([
-                'valor' => 500,
+                'valor' => $inputs['output'],
                 'anuncio_id' => $anuncio->id,
                 'area_construida' => $inputs['area_construida'],
                 'area_terreno' => $inputs['area_terreno'],
@@ -40,7 +40,7 @@ class CriadorDeImovel{
         }
         if($tipo == "Fazenda"){
             $fazenda = new Fazenda([
-                'valor' => 500,
+                'valor' => $inputs['output'],
                 'anuncio_id' => $anuncio->id,
                 'casa' => $inputs['casa'],
                 'plantacoes' => $inputs['plantacoes'],
@@ -51,7 +51,7 @@ class CriadorDeImovel{
         }
         if($tipo == "Terreno"){
             $terreno = new Terreno([
-                'valor' => 500,
+                'valor' => $inputs['output'],
                 'anuncio_id' => $anuncio->id,
                 'frente' => $inputs['frente'],
                 'lado' => $inputs['lado'],

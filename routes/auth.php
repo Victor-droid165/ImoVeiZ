@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\AnuncioController;
+use App\Http\Controllers\EnderecoController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -79,4 +80,6 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/anuncios/{id}', [AnuncioController::class,'destroy'])
                 ->name('destruir_anuncio');
+
+    Route::post('api/fetch-cidades', [EnderecoController::class, 'fetchCidade']);
 });

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Endereco;
+use App\Models\Cidade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnderecoController extends Controller
 {
@@ -81,5 +82,13 @@ class EnderecoController extends Controller
     public function destroy(Endereco $endereco)
     {
         //
+    }
+
+    public function fetchCidade(Request $request){
+        $estado = DB::table('estados')->where('nome', '=', $request->nome)->first();
+        $data['cidades'] = DB::table('cidades')
+        ->where('estado_id', '=', $estado->id)
+        ->get();
+        return response()->json($data);
     }
 }

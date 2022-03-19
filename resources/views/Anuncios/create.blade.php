@@ -115,9 +115,9 @@
                 </div>
             </div>
         </div>
-        <x-endereco-form></x-endereco-form>
+        <x-endereco-form ></x-endereco-form>
         
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             <div class="form-floating mb-3 col-5">
                 <textarea class="form-control" placeholder="Escreva a descrição do seu anúncio aqui." id="descricao" name="descricao" style="height: 100px"></textarea>
                 <label for="descricao" class="ms-2">Descrição do Anúncio</label>
@@ -140,6 +140,14 @@
                 </div>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="form-floating mb-3 col-5">
+                <input type="number" class="form-control" id="output" name="output">
+                <label for="output" class="ms-2">Valor do Imóvel</label>
+                <input type="range" class="form-range mt-3" min="0" max="{{10**7;}}" value="0" 
+                id="valor" name="valor">
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary mt-3 py-2">Adicionar</button>
     
         </div>
@@ -147,19 +155,31 @@
 @endsection
 
 <script>
-  function show_tipo() {
-      let selectTipo = document.getElementById('tipo');
-      let userInput = selectTipo.options[selectTipo.selectedIndex].value;
-      let showingTipos = document.getElementsByClassName('hidden-show-tipo show');
-      if (showingTipos){
-        for (let item of showingTipos) {
-            item.classList.remove('show');
-            item.classList.add('d-none');
-            console.log(item);
+    function show_tipo() {
+        let selectTipo = document.getElementById('tipo');
+        let userInput = selectTipo.options[selectTipo.selectedIndex].value;
+        let showingTipos = document.getElementsByClassName('hidden-show-tipo show');
+        if (showingTipos){
+            for (let item of showingTipos) {
+                item.classList.remove('show');
+                item.classList.add('d-none');
+                console.log(item);
+            }
         }
-      }
-      document.getElementById(userInput + "Div").classList.add('show');
-      document.getElementById(userInput + "Div").classList.remove('d-none');
-      return false;
-  }
+        document.getElementById(userInput + "Div").classList.add('show');
+        document.getElementById(userInput + "Div").classList.remove('d-none');
+        return false;
+    }
+    window.onload = function() {
+        var slider = document.getElementById("valor");
+        var output = document.getElementById("output");
+        output.value = slider.value;
+
+        slider.oninput = function() {
+            output.value = this.value;
+        }
+        output.oninput = function() {
+            slider.value = this.value;
+        }
+    };
 </script>

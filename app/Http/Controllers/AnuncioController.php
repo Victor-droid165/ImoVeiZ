@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AnunciosFormRequest;
 use App\Services\CriadorDeImovel;
 use App\Services\CriadorDeAnuncio;
+use Illuminate\Support\Facades\DB;
 
 
 class AnuncioController extends Controller
@@ -45,7 +46,7 @@ class AnuncioController extends Controller
             'Venda',
             'Aluguel'
         ];
-
+        
         return view('Anuncios.create', compact(['tipos', 'categorias']));
     }
 
