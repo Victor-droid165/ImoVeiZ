@@ -14,6 +14,7 @@ class Anuncio extends Model
     protected $fillable = [
         'titulo',
         'descricao',
+        'imagem'
     ];
 
     public function autor(){

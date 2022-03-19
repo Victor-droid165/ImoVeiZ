@@ -23,12 +23,14 @@ class CriadorDeAnuncio{
         $cep = $request->cep;
         $cidade = $request->cidade;
         $estado = $request->estado;
+        $imagem = $request->file("imagem")->store("imovel");
         DB::transaction( function () use ($titulo, $descricao, $categoria, $tipo,
         $anunciante, $rua, $numero_rua, $bairro, $cep, $cidade, $estado,
-        $criadorDeImovel, $request,  &$anuncio){
+        $criadorDeImovel, $request, $imagem,  &$anuncio){
             $anuncio = $anunciante->anuncios()->create([
-                'titulo' => $titulo,
-                'descricao' => $descricao
+                'titulo'    => $titulo,
+                'descricao' => $descricao,
+                'imagem'    => $imagem
             ]);
             $imovel = $criadorDeImovel->createTipoImovel($tipo, $request->except('tipo'), $anuncio);
             $endereco = $imovel->endereco()->create([

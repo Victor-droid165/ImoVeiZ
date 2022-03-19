@@ -2,7 +2,7 @@
 @section('title', 'Publicar Anúncio')
 @section('body')
     <form class="container text-center my-4" method="POST"
-    action="{{ route('criar_anuncio') }}">
+    action="{{ route('criar_anuncio') }}" enctype="multipart/form-data">
         @csrf
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
@@ -140,12 +140,19 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             <div class="form-floating mb-3 col-5">
                 <input type="number" class="form-control" id="output" name="output">
                 <label for="output" class="ms-2">Valor do Imóvel</label>
                 <input type="range" class="form-range mt-3" min="0" max="{{10**7;}}" value="0" 
                 id="valor" name="valor">
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="mb-3 col-5">
+                <input type="file" class="form-control" id="imagem" name="imagem">
+                <label for="imagem" class="ms-2">Imagem do Imóvel</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary mt-3 py-2">Adicionar</button>
