@@ -32,10 +32,10 @@
     </div>
     <hr class="my-4">
     <h2 class="fs-5 fw-bold mb-3">Ou entre com suas redes sociais</h2>
-    <a href="#" role="button"
-    class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4">
-        <i class="fab fa-twitter fa-fw"></i>
-        Entrar com Twitter
+    <a href="{{ route('login.google.auth') }}" role="button"
+    class="w-100 py-2 mb-2 btn btn-outline-success rounded-4">
+        <i class="fab fa-google fa-fw"></i>
+        Entrar com Google
     </a>
     <a href="{{ route('login.facebook.auth') }}" role="button"
     class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4">

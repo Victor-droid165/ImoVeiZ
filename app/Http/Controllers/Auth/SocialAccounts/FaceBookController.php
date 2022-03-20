@@ -20,16 +20,21 @@ class FaceBookController extends Controller
     {
         try {
             $user = Socialite::driver('facebook')->user();
-            $saveUser = User::updateOrCreate([
-                'facebook_id' => $user->getId(),
-            ],[
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'password' => Hash::make($user->getName().'@'.$user->getId())
-                    ]);
-
+            $saveUser = User::where('email', $user->getEmail())->first();
+            if ($saveUser !== null) {
+                $saveUser->update(['facebook_id' => $user->getId()]);
+            } else {
+                $saveUser = User::create([
+                  'email' => $user->getEmail(),
+                  'name' => $user->getName(),
+                  'facebook_id' => $user->getId(),
+                  'password' => Hash::make($user->getName().'@'.$user->getId())
+                ]);
+            }
+            if(! $saveUser->hasVerifiedEmail())
+                $saveUser->markEmailAsVerified();
+            $saveUser->assignRole('user');
             Auth::loginUsingId($saveUser->id);
-
             return redirect()->route('home');
         } catch (\Throwable $th) {
             throw $th;

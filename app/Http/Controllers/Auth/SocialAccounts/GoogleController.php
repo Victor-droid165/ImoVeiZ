@@ -9,25 +9,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
-class GithubController extends Controller
+class GoogleController extends Controller
 {
-    public function loginUsingGithub()
+    public function loginUsingGoogle()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
-    public function callbackFromGithub()
+    public function callbackFromGoogle()
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver('google')->user();
             $saveUser = User::where('email', $user->getEmail())->first();
             if ($saveUser !== null) {
-                $saveUser->update(['github_id' => $user->getId()]);
+                $saveUser->update(['google_id' => $user->getId()]);
             } else {
                 $saveUser = User::create([
                   'email' => $user->getEmail(),
                   'name' => $user->getName(),
-                  'github_id' => $user->getId(),
+                  'google_id' => $user->getId(),
                   'password' => Hash::make($user->getName().'@'.$user->getId())
                 ]);
             }

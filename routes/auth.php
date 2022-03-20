@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\SocialAccounts\FaceBookController;
 use App\Http\Controllers\Auth\SocialAccounts\GithubController;
+use App\Http\Controllers\Auth\SocialAccounts\GoogleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -55,6 +56,11 @@ Route::middleware('guest')->group(function () {
         Route::prefix('facebook')->name('facebook.')->group( function(){
             Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('auth');
             Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+        });
+
+        Route::prefix('google')->name('google.')->group( function(){
+            Route::get('auth', [GoogleController::class, 'loginUsingGoogle'])->name('auth');
+            Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
         });
     });          
 
