@@ -27,7 +27,7 @@ role="dialog" id="modalLogin">
             <div class="tab-pane fade" id="nav-register" role="tabpanel"
             aria-labelledby="nav-register-tab">
               <div class="modal-body p-5 pt-0">
-                <x-register-tab-content/>
+              <x-register-tab-content/>
               </div>
             </div>
           </div>
