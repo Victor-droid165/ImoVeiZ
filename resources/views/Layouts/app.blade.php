@@ -35,6 +35,7 @@
         <main>
             @yield('body')
         </main>
+        <div class="divider"> </div>
         @include('Layouts.footer')
     </body>
 </html>
