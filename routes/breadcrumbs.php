@@ -39,6 +39,12 @@ Breadcrumbs::for('password.request', function (BreadcrumbTrail $trail) {
     $trail->push('Esqueci minha senha', route('password.request'));
 });
 
+// Home > Login > Verificação de Email
+Breadcrumbs::for('verification.notice', function (BreadcrumbTrail $trail) {
+    $trail->parent('login');
+    $trail->push('Verificação de Email', route('verification.notice'));
+});
+
 // Home > Login > Esqueci Minha Senha > Resetar senha
 Breadcrumbs::for('password.reset', function (BreadcrumbTrail $trail, String $token, String $email) {
     $trail->parent('password.request');

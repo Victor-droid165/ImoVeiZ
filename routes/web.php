@@ -15,19 +15,4 @@ use App\Http\Controllers\AnuncioController;
 |
 */
 
-Route::get('/', [LayoutController::class, 'index'])
-                ->name('home');
-
-Route::get('/quem-somos', [LayoutController::class, 'quemSomos'])
-                ->name('quem-somos');
-
-Route::get('/contato', [LayoutController::class, 'contato'])
-                ->name('contato');
-
-Route::get('/corretores', [LayoutController::class, 'corretores'])
-                ->name('corretores');
-
-Route::get('/anuncio/{anuncio}', [AnuncioController::class, 'show'])
-                ->name('anuncio-info');
-
 require __DIR__.'/auth.php';

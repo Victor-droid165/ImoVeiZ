@@ -15,6 +15,23 @@ use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\EnderecoController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('guestORverified')->group(function () {
+    Route::get('/', [LayoutController::class, 'index'])
+                ->name('home');
+
+    Route::get('/quem-somos', [LayoutController::class, 'quemSomos'])
+                    ->name('quem-somos');
+
+    Route::get('/contato', [LayoutController::class, 'contato'])
+                    ->name('contato');
+
+    Route::get('/corretores', [LayoutController::class, 'corretores'])
+                    ->name('corretores');
+
+    Route::get('/anuncio/{anuncio}', [AnuncioController::class, 'show'])
+                    ->name('anuncio-info')->withoutMiddleware('auth');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -54,23 +71,26 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->name('verification.notice');
+    ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware('throttle:6,1')
-                ->name('verification.send');
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->name('password.confirm');
+        ->name('password.confirm');
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+            ->name('logout');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/anuncios/criar', [AnuncioController::class,'create'])
                 ->name('form_criar_anuncio');
