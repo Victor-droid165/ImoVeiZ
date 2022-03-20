@@ -1965,3 +1965,7 @@ a.socialIcon:hover,
 .carousel-control-prev {
     filter: invert(100%);
 }
+
+.section-title {
+    border-bottom: 4px solid #81acec;
+}
