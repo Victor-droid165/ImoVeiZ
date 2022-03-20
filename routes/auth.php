@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\ContatoController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guestORverified')->group(function () {
@@ -24,6 +25,9 @@ Route::middleware('guestORverified')->group(function () {
 
     Route::get('/contato', [LayoutController::class, 'contato'])
                     ->name('contato');
+
+    Route::post('/contato/sending', [ContatoController::class, 'store'])
+                    ->name('contato.send');
 
     Route::get('/corretores', [LayoutController::class, 'corretores'])
                     ->name('corretores');

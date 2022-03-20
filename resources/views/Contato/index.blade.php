@@ -1,27 +1,83 @@
 @extends('Layouts.app')
 @section('title', 'Contato')
 @section('body')
+    @include('components.mensagem', ['mensagem' => $mensagem])
     <div class="container row col-11 me-auto ms-auto mt-5 position-flex justify-content-center
     align-items-center">
-      <form class="row g-2 col-7 border border-1 rounded" style="height: 350px">
-        <div class="col-md-6 mb-0">
-          <label class="form-label"></label>
-          <input type="text" placeholder="Nome" class="form-control">
+      <form method="POST" action="{{ route('contato.send') }}" 
+      class="row g-2 col-7 border border-1 rounded" style="min-height: 350px">
+        @csrf
+        <div class="col-md-6">
+          <input id="nome" name="nome" type="text" placeholder="Nome" class="form-control 
+          {{$nome_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('nome')}}">
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            @if($errors->has('nome'))
+              @foreach($erros['nome'] as $erro_nome) 
+                {{$erro_nome}}
+              @endforeach
+            @endif
+          </div>
         </div>
-        <div class="col-md-6 mb-0">
-          <label class="form-label"></label>
-          <input type="text" placeholder="Sobrenome" class="form-control">
+        <div class="col-md-6">
+          <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome" class="form-control
+          {{$sobrenome_invalido === false ? 'is-valid' : 'is-invalid'}}"
+          value="{{Request::old('sobrenome')}}">
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            @if($errors->has('sobrenome'))
+              @foreach($erros['sobrenome'] as $erro_sobrenome) 
+                {{$erro_sobrenome}}
+              @endforeach
+            @endif
+          </div>
         </div>
-        <div class="col-md-6 mt-0">
-          <label class="form-label"></label>
-          <input type="email" placeholder="Seu melhor email" class="form-control">
+        <div class="col-md-6">
+          <input id="email" name="email" type="email" placeholder="Seu melhor email" class="form-control
+          {{$email_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('email')}}">
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            @if($errors->has('email'))
+              @foreach($erros['email'] as $erro_email) 
+                {{$erro_email}}
+              @endforeach
+            @endif
+          </div>
         </div>
-        <div class="col-md-6 mt-0">
-          <label for="inputAddress2" class="form-label"></label>
-          <input type="tel" placeholder="Telefone" class="form-control">
+        <div class="col-md-6">
+          <input id="numero" name="numero" type="tel" placeholder="Telefone" class="form-control
+          {{$telefone_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('numero')}}">
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            @if($errors->has('numero'))
+              @foreach($erros['numero'] as $erro_numero) 
+                {{$erro_numero}}
+              @endforeach
+            @endif
+          </div>
         </div>
-        <div class="input-group mb-1">
-          <textarea class="form-control" placeholder="Fale Conosco!"></textarea>
+        <div class="col">
+          <textarea id="mensagem" name="mensagem" class="form-control
+          {{$mensagem_invalida === false ? 'is-valid' : 'is-invalid'}}" 
+          placeholder="Fale Conosco!" value="{{Request::old('mensagem')}}"></textarea>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            @if($errors->has('mensagem'))
+              @foreach($erros['mensagem'] as $erro_mensagem) 
+                {{$erro_mensagem}}
+              @endforeach
+            @endif
+          </div>
         </div>
         <div class="col-12 mt-3 mb-1 text-center">
           <button type="submit" class="btn btn-primary">Quero encontrar os melhores imóveis!</button>
@@ -32,7 +88,7 @@
         <img src="{{asset('/assets/img/logo.png')}}" class="card-img img-responsive" alt="...">
       </div>
     </div>
-    <br><hr><br>
+    <div class="divider my-4"></div>
     <div class="card mb-3 col-11 tex-center m-auto">
       <div class="row g-0">
         <div class="col-7">

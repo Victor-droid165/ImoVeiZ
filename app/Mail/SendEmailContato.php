@@ -11,14 +11,26 @@ class SendEmailContato extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    public $mensagem;
+    public $nome;
+    public $sobrenome;
+    public $numero;
+    public $email;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $mensagem, string $nome, string $sobrenome,
+    string $numero, string $email)
     {
-        //
+        $this->mensagem = $mensagem;
+        $this->nome = $nome;
+        $this->sobrenome = $sobrenome;
+        $this->numero = $numero;
+        $this->email = $email;
     }
 
     /**
@@ -28,6 +40,7 @@ class SendEmailContato extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from($this->email)
+                    ->markdown('emails.contato.fromUser');
     }
 }

@@ -14,9 +14,28 @@ class LayoutController extends Controller
         return view('Home.index', compact('anuncios'));
     }
 
-    public function contato()
+    public function contato(Request $request)
     {
-        return view('Contato.index');
+        if($request->session()->has('errors')){
+            $errors = $request->session()->get('errors');
+            $nome_invalido = $errors->has('nome');
+            $sobrenome_invalido = $errors->has('sobrenome');
+            $telefone_invalido = $errors->has('numero');
+            $email_invalido = $errors->has('email');
+            $mensagem_invalida = $errors->has('mensagem');
+            $erros = $errors->getBags()['default']->getMessages();
+        } else{
+            $nome_invalido = $sobrenome_invalido = $telefone_invalido = $email_invalido = 
+            $mensagem_invalida = $erros = true;
+        }
+        
+        $mensagem = $request->session()->get(key: 'mensagem');
+        if($erros)
+            return view('Contato.index', compact(['mensagem', 'nome_invalido', 'sobrenome_invalido'
+            , 'telefone_invalido', 'email_invalido', 'mensagem_invalida', 'erros']));
+
+        return view('Contato.index', compact(['mensagem', 'nome_invalido', 'sobrenome_invalido'
+            , 'telefone_invalido', 'email_invalido', 'mensagem_invalida']));
     }
 
     public function quemSomos()
