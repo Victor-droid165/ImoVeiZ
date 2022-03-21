@@ -64,10 +64,15 @@ Breadcrumbs::for('form_criar_anuncio', function (BreadcrumbTrail $trail) {
     $trail->push('Criar Anúncio', route('form_criar_anuncio'));
 });
 
-
-// Home > [Anuncio]
-Breadcrumbs::for('anuncio-info', function (BreadcrumbTrail $trail, Anuncio $anuncio) {
+// Home > Anúncios
+Breadcrumbs::for('anuncios', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
+    $trail->push("Anúncios", route('anuncios'));
+});
+
+// Home > Anúncios > [Anúncio]
+Breadcrumbs::for('anuncio-info', function (BreadcrumbTrail $trail, Anuncio $anuncio) {
+    $trail->parent('anuncios');
     $trail->push($anuncio->titulo, route('anuncio-info', $anuncio));
 });
 

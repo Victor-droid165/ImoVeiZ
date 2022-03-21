@@ -4,10 +4,10 @@
         <p class="col-2 section-title"></p>
     </div>
     <div class="col-6 text-end mt-3">
-        <button class="btn btn-outline-primary">
+        <a role="button" href="{{route('anuncios')}}"class="btn btn-outline-primary">
         Veja todos os imóveis
         <i class="fas fa-long-arrow-alt-right"></i>
-        </button>
+        </a>
     </div>
     <div class="col-12">
         <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">

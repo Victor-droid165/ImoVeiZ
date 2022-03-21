@@ -23,9 +23,34 @@ class AnuncioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $anuncios2 = false;
+        if($request->has('tipo')){
+            $imoveis_id = DB::table($request->get('tipo').'s')->select('base_id')->get();
+            $ids = [];
+            foreach ($imoveis_id as $imovel_id)
+                array_push($ids, $imovel_id->base_id);
+            $anuncios_id = DB::table('imoveis')->whereIn('id', $ids)->select('anuncio_id')->get();
+            $ids = [];
+            foreach ($anuncios_id as $anuncio_id)
+                array_push($ids, $anuncio_id->anuncio_id);
+            $anuncios2 = DB::table('anuncios')->whereIn('id', $ids);
+            $request->query->remove('tipo');
+        }
+        
+        $keys = [];
+        foreach($request->all() as $key=>$valor){
+            if($key == 'categoria')
+                $valor = ucfirst($valor);
+            array_push($keys, [$key, '=', $valor]);
+        }
+        if ($anuncios2)
+            $anuncios = $anuncios2->where($keys)->get();
+        else
+            $anuncios = DB::table('anuncios')->where($keys)->get();
+
+        return view('Anuncios.index', compact('anuncios'));
     }
 
     /**
@@ -80,16 +105,16 @@ class AnuncioController extends Controller
      */
     public function show(Anuncio $anuncio)
     {
-        $is_apartamento = $anuncio->imovel::class == "App\Models\Apartamento";
-        $is_fazenda = $anuncio->imovel::class == "App\Models\Fazenda";
-        $is_terreno = $anuncio->imovel::class == "App\Models\Terreno";
-        $is_casa = $anuncio->imovel::class == "App\Models\Casa";
+        $classe = $anuncio->imovel::class;
+        $tipo = explode('\\',$classe);
+        $tipo = array_pop($tipo);
+        $imovel = $anuncio->imovel;
+        $endereco = $anuncio->imovel->endereco;
         return view('Anuncios.info', compact([
-            'anuncio', 
-            'is_apartamento', 
-            'is_fazenda', 
-            'is_terreno',
-            'is_casa'
+            'anuncio',
+            'imovel',
+            'endereco',
+            'tipo'
         ]));
     }
 

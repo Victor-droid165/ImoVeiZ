@@ -1,14 +1,58 @@
 @extends('Layouts.app')
 @section('title', 'Visualizar Anúncio')
 @section('body')
-    <ul> 
-        <!-- Características do anúncio se pega assim -->
-        <li>Descrição do Anúncio: {{$anuncio->descricao}}</li>
-        <!-- Características do imóvel do anúncio se pega assim -->
-        <li>{{$anuncio->imovel->valor}}</li>
-        <!-- Características do endereço do imóvel se pega assim -->
-        <li>{{$anuncio->imovel->endereco->rua}}</li>
-        <!-- Verifica-se o tipo do imóvel assim-->
-        <li>É Apartamento: {{$is_apartamento}}</li> <!-- 1 == True -->
-    </ul>
+    <div class="container py-3 justify-content-center">
+        <div class="ratio ratio-21x9">
+            <img src="{{Storage::url('').$anuncio->imagem}}" class="img-fluid" alt="Imagem do Anúncio">
+        </div>
+        <div class="card mt-5 py-3 h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{$anuncio->titulo}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <i class="fa fa-map-marker"></i>
+                    <span>
+                        {{$endereco->rua}}, 
+                        {{$endereco->numero}}, 
+                        {{$endereco->bairro}}. 
+                        {{$endereco->cep}}
+                    </span>
+                </h6>
+                <h5 class="pt-3">
+                    Descrição
+                </h5>
+                <p class="card-text">{{$anuncio->descricao}}</p>
+            </div>
+        </div>
+        <div class="card mt-5 py-3 h-100">
+            <div class="card-body">
+                <h5 class="card-title">Endereço</h5>
+                <p class="card-text">
+                    <div class="row py-2 card-subtitle text-muted">
+                        <div class="col">
+                            Endereço: {{$endereco->rua}}, {{$endereco->numero}}
+                        </div>
+                        <div class="col">
+                            CEP: {{$endereco->cep}}
+                        </div>
+                    </div>
+                    <div class="row py-2 card-subtitle text-muted">
+                        <div class="col">
+                            País: Brasil
+                        </div>
+                        <div class="col">
+                            Cidade: {{$endereco->cidade}}
+                        </div>
+                    </div>
+                    <div class="row pt-2 card-subtitle text-muted">
+                        <div class="col">
+                            Estado: {{$endereco->estado}}
+                        </div>
+                        <div class="col">
+                            Bairro: {{$endereco->bairro}}
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
 @endsection

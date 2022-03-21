@@ -59,7 +59,7 @@
                     <div class="card-body">
                       <p class="fs-5 card-text">{{ucfirst($tipo)}}</p>                    
                     </div>
-                    <a href="#" class="stretched-link"></a>
+                    <a href="{{route('anuncios', ['tipo' => $tipo])}}" class="stretched-link"></a>
                   </div>
                 </div>
                 
