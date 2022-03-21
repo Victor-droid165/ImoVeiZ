@@ -10,8 +10,15 @@ class LayoutController extends Controller
     
     public function index()
     {
-        $anuncios = DB::table('anuncios')->get();
-        return view('Home.index', compact('anuncios'));
+        $vendas =  DB::table('anuncios')->where('categoria', '=', 'Venda')->get();
+        $alugueis =  DB::table('anuncios')->where('categoria', '=', 'Aluguel')->get();
+        $tipos = [
+          'apartamento',
+          'casa',
+          'fazenda',
+          'terreno'  
+        ];
+        return view('Home.index', compact(['vendas', 'alugueis', 'tipos']));
     }
 
     public function contato(Request $request)
