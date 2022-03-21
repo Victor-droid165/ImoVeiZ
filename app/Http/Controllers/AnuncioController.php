@@ -25,31 +25,50 @@ class AnuncioController extends Controller
      */
     public function index(Request $request)
     {
-        $anuncios2 = false;
+        $anuncios2 = $valor_min = $valor_max = $anuncios_id = false;
+        if($request->has('valor_min')){
+            $valor_min = $request->get('valor_min');
+            $valor_max = $request->get('valor_max');
+            $anuncios_id = DB::table('imoveis')->whereBetween('valor', [$valor_min, $valor_max]);
+            $request->query->remove('valor_min');
+            $request->query->remove('valor_max');
+        }
+
         if($request->has('tipo')){
             $imoveis_id = DB::table($request->get('tipo').'s')->select('base_id')->get();
             $ids = [];
             foreach ($imoveis_id as $imovel_id)
                 array_push($ids, $imovel_id->base_id);
-            $anuncios_id = DB::table('imoveis')->whereIn('id', $ids)->select('anuncio_id')->get();
+            if($anuncios_id)
+                $anuncios_id = $anuncios_id->whereIn('id', $ids);
+            else
+                $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
+            $request->query->remove('tipo');
+        }
+
+        if($anuncios_id){
+            $anuncios_id = $anuncios_id->select('anuncio_id')->get();
             $ids = [];
             foreach ($anuncios_id as $anuncio_id)
                 array_push($ids, $anuncio_id->anuncio_id);
             $anuncios2 = DB::table('anuncios')->whereIn('id', $ids);
-            $request->query->remove('tipo');
         }
         
         $keys = [];
         foreach($request->all() as $key=>$valor){
+            $operador = '=';
             if($key == 'categoria')
                 $valor = ucfirst($valor);
-            array_push($keys, [$key, '=', $valor]);
+            else if($key == 'valor')
+                $operador = '>=';
+            array_push($keys, [$key, $operador, $valor]);
         }
+        
         if ($anuncios2)
             $anuncios = $anuncios2->where($keys)->get();
         else
             $anuncios = DB::table('anuncios')->where($keys)->get();
-
+            
         return view('Anuncios.index', compact('anuncios'));
     }
 

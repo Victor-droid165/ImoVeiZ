@@ -41,6 +41,8 @@ class AnunciosFormRequest extends FormRequest
             'cep' => 'required',
             'cidade' => 'required',
             'estado' => 'required',
+            'imagem' => 'required',
+            'valor'  => 'required'
         ];
     }
 

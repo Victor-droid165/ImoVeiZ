@@ -33,7 +33,7 @@ Route::middleware('guestORverified')->group(function () {
     Route::get('/corretores', [LayoutController::class, 'corretores'])
                     ->name('corretores');
 
-    Route::get('/anuncios/{anuncio}', [AnuncioController::class, 'show'])
+    Route::get('/anuncios/show/{anuncio}', [AnuncioController::class, 'show'])
                     ->name('anuncio-info')->withoutMiddleware('auth');
 
     Route::get('/anuncios', [AnuncioController::class, 'index'])
@@ -104,10 +104,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    
     Route::get('/anuncios/criar', [AnuncioController::class,'create'])
                 ->name('form_criar_anuncio');
-
     Route::post('/anuncios/criar', [AnuncioController::class,'store'])
                 ->name('criar_anuncio');
 
