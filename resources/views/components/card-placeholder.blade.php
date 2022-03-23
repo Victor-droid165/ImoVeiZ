@@ -1,5 +1,5 @@
 <div class="col-md-3 mb-3" disabled>
-    <div class="card text-center bg-bottom" aria-hidden="true">
+    <div class="card h-100 text-center bg-bottom" aria-hidden="true">
         <h5 class="card-header placeholder-glow">
             <span class="placeholder col-6"></span>
         </h5>

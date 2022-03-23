@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LayoutController extends Controller
 {
@@ -57,6 +58,20 @@ class LayoutController extends Controller
 
     public function corretores()
     {
-        return view('Corretores.index');
+        $role_corretor_id = DB::table('roles')->select('id')->where('name', '=', 'corretor')->first()->id;
+        $corretores_ids =  DB::table('model_has_roles')->where('role_id', '=', $role_corretor_id)
+                                                   ->select('model_id')->get();
+        $corretores_ids_array = [];
+        foreach($corretores_ids as $corretor_id)
+            array_push($corretores_ids_array, $corretor_id->model_id);
+        $corretores = DB::table('users')->whereIn('id', $corretores_ids_array)->get();
+        $cont = 0;
+        return view('Corretores.index', compact('corretores', 'cont'));
+    }
+
+    public function usuarios()
+    {
+        $users =  DB::table('users')->where('id', '<>', Auth::user()->id)->get();
+        return view('Usuarios.index', compact('users'));
     }
 }

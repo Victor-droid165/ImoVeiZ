@@ -26,8 +26,8 @@ class ContatoFormRequest extends FormRequest
         return [
             'nome' => 'required',
             'sobrenome' => 'required',
-            'numero' => 'required',
-            'email' => 'required',
+            'numero' => 'required|digits:11',
+            'email' => 'required|email:rfc,dns',
             'mensagem' => 'required',
         ];
     }
@@ -36,6 +36,8 @@ class ContatoFormRequest extends FormRequest
     {
         return [
             'required' => 'O campo :attribute é obrigatório',
+            'digits' => 'O campo :attribute deve ter 11 dígitos',
+            'email'  => 'O campo :attribute deve conter um email válido'
         ];
     }
 }

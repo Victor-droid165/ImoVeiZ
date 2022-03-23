@@ -123,3 +123,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('api/fetch-cidades', [EnderecoController::class, 'fetchCidade']);
 });
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/usuarios', [LayoutController::class,'usuarios'])
+                ->name('usuarios');
+});

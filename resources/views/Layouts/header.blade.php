@@ -35,6 +35,12 @@
                             <a class="nav-link {{ $routeName ==
                                 'contato' ? 'active' : ''  }}" href="{{route('contato')}}">Contato</a>
                         </li>
+                        @hasrole('admin')
+                            <li class="nav-item px-3">
+                                <a class="nav-link {{ $routeName ==
+                                    'usuarios' ? 'active' : ''  }}" href="{{route('usuarios')}}">Usuários</a>
+                            </li>
+                        @endrole
                     </ul>
                     @guest
                         <div class="d-flex align-items-center">

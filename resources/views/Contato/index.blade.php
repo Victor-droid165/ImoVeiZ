@@ -9,7 +9,8 @@
         @csrf
         <div class="col-md-6">
           <input id="nome" name="nome" type="text" placeholder="Nome" class="form-control 
-          {{$nome_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('nome')}}">
+          {{$errors->any() ? ($errors->has('nome') ? 'is-invalid' : 'is-valid') : ''}}"
+          value="{{Request::old('nome')}}">
           <div class="valid-feedback">
             Tudo certo!
           </div>
@@ -23,7 +24,7 @@
         </div>
         <div class="col-md-6">
           <input id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome" class="form-control
-          {{$sobrenome_invalido === false ? 'is-valid' : 'is-invalid'}}"
+          {{$errors->any() ? ($errors->has('sobrenome') ? 'is-invalid' : 'is-valid') : ''}}"
           value="{{Request::old('sobrenome')}}">
           <div class="valid-feedback">
             Tudo certo!
@@ -38,7 +39,8 @@
         </div>
         <div class="col-md-6">
           <input id="email" name="email" type="email" placeholder="Seu melhor email" class="form-control
-          {{$email_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('email')}}">
+          {{$errors->any() ? ($errors->has('email') ? 'is-invalid' : 'is-valid') : ''}}"
+          value="{{Request::old('email')}}">
           <div class="valid-feedback">
             Tudo certo!
           </div>
@@ -52,7 +54,8 @@
         </div>
         <div class="col-md-6">
           <input id="numero" name="numero" type="tel" placeholder="Telefone" class="form-control
-          {{$telefone_invalido === false ? 'is-valid' : 'is-invalid'}}" value="{{Request::old('numero')}}">
+          {{$errors->any() ? ($errors->has('numero') ? 'is-invalid' : 'is-valid') : ''}}"
+          value="{{Request::old('numero')}}">
           <div class="valid-feedback">
             Tudo certo!
           </div>
@@ -66,7 +69,7 @@
         </div>
         <div class="col">
           <textarea id="mensagem" name="mensagem" class="form-control
-          {{$mensagem_invalida === false ? 'is-valid' : 'is-invalid'}}" 
+          {{$errors->any() ? ($errors->has('mensagem') ? 'is-invalid' : 'is-valid') : ''}}"
           placeholder="Fale Conosco!" value="{{Request::old('mensagem')}}"></textarea>
           <div class="valid-feedback">
             Tudo certo!

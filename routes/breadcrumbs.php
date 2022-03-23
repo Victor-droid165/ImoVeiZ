@@ -27,6 +27,12 @@ Breadcrumbs::for('corretores', function (BreadcrumbTrail $trail) {
     $trail->push('Corretores', route('corretores'));
 });
 
+// Home > Corretores
+Breadcrumbs::for('usuarios', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Usuários', route('usuarios'));
+});
+
 // Home > Login
 Breadcrumbs::for('login', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
