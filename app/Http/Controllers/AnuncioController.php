@@ -45,15 +45,17 @@ class AnuncioController extends Controller
         }
 
         if($request->has('estado')){
-            $imoveis_id = DB::table('enderecos')->select('imovel_id')->where('estado', '=',
-            $request->get('estado'))->get();
-            $ids = [];
-            foreach ($imoveis_id as $imovel_id)
-                array_push($ids, $imovel_id->imovel_id);
-            if($anuncios_id)
-                $anuncios_id = $anuncios_id->whereIn('id', $ids);
-            else
-                $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
+            if($request->get('estado')){
+                $imoveis_id = DB::table('enderecos')->select('imovel_id')->where('estado', '=',
+                $request->get('estado'))->get();
+                $ids = [];
+                foreach ($imoveis_id as $imovel_id)
+                    array_push($ids, $imovel_id->imovel_id);
+                if($anuncios_id)
+                    $anuncios_id = $anuncios_id->whereIn('id', $ids);
+                else
+                    $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
+            }  
         }
 
         if($anuncios_id){
@@ -80,7 +82,6 @@ class AnuncioController extends Controller
             $anuncios = $anuncios2->where($keys)->get();
         else
             $anuncios = DB::table('anuncios')->where($keys)->get();
-            
         return view('Anuncios.index', compact('anuncios'));
     }
 
