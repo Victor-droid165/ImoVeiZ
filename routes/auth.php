@@ -38,6 +38,9 @@ Route::middleware('guestORverified')->group(function () {
 
     Route::get('/anuncios', [AnuncioController::class, 'index'])
                     ->name('anuncios')->withoutMiddleware('auth');
+
+    Route::post('/anuncios', [AnuncioController::class, 'index'])
+                    ->name('anuncios')->withoutMiddleware('auth');
 });
 
 Route::middleware('guest')->group(function () {

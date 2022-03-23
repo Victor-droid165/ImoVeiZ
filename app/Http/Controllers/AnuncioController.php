@@ -44,6 +44,18 @@ class AnuncioController extends Controller
                 $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
         }
 
+        if($request->has('estado')){
+            $imoveis_id = DB::table('enderecos')->select('imovel_id')->where('estado', '=',
+            $request->get('estado'))->get();
+            $ids = [];
+            foreach ($imoveis_id as $imovel_id)
+                array_push($ids, $imovel_id->imovel_id);
+            if($anuncios_id)
+                $anuncios_id = $anuncios_id->whereIn('id', $ids);
+            else
+                $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
+        }
+
         if($anuncios_id){
             $anuncios_id = $anuncios_id->select('anuncio_id')->get();
             $ids = [];
@@ -54,7 +66,8 @@ class AnuncioController extends Controller
         
         $keys = [];
         foreach($request->all() as $key=>$valor){
-            if($key !== 'valor_min' && $key !== 'valor_max' && $key !== 'tipo'){
+            if($key !== 'valor_min' && $key !== 'valor_max' && $key !== 'tipo' && $key !== '_token'
+            && $key !== 'estado'){
                 $operador = '=';
                 if($key == 'categoria')
                     $valor = ucfirst($valor);
@@ -63,7 +76,6 @@ class AnuncioController extends Controller
                 array_push($keys, [$key, $operador, $valor]);
             }
         }
-        
         if ($anuncios2)
             $anuncios = $anuncios2->where($keys)->get();
         else
@@ -128,7 +140,10 @@ class AnuncioController extends Controller
         $tipo = explode('\\',$classe);
         $tipo = array_pop($tipo);
         $imovel = $anuncio->imovel;
+        $aux = $imovel->id;
+        $imovel->id = $imovel->base_id;
         $endereco = $anuncio->imovel->endereco;
+        $imovel->id = $aux;
         return view('Anuncios.info', compact([
             'anuncio',
             'imovel',

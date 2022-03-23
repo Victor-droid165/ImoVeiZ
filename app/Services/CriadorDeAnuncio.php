@@ -41,14 +41,17 @@ class CriadorDeAnuncio{
                 'categoria' => $categoria
             ]);
             $imovel = $criadorDeImovel->createTipoImovel($tipo, $request->except('tipo'), $anuncio);
+            $aux = $imovel->id;
+            $imovel->id = $imovel->base_id;
             $endereco = $imovel->endereco()->create([
                 'rua' => $rua,
                 'numero' => $numero_rua,
                 'bairro' => $bairro,
                 'cep' => $cep,
                 'cidade' => $cidade,
-                'estado' => $estado
+                'estado' => $estado,
             ]);
+            $imovel->id = $aux;
         });
         return $anuncio;
     }
