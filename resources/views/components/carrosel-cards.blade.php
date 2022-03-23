@@ -20,9 +20,10 @@
                         <x-card-placeholder></x-card-placeholder>
                         @else
                         <div class="col-md-3 mb-3 ">
-                            <div class="card text-center bg-bottom">
+                            <div class="card h-100 text-center bg-bottom">
                             <h5 class="card-header">
                             {{$anuncios[$j]->categoria}}
+                            
                             </h5>
                             <div class="ratio ratio-1x1">
                                 <img src="{{Storage::url(''). $anuncios[$j]->imagem}}"

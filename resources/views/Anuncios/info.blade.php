@@ -7,7 +7,23 @@
         </div>
         <div class="card mt-5 py-3 h-100">
             <div class="card-body">
-                <h5 class="card-title">{{$anuncio->titulo}}</h5>
+                <h5 class="card-title">
+                    <div class="row">
+                        <div class="col-11">
+                            {{$anuncio->titulo}}
+                        </div>
+                        <div class="col-1">
+                            @if(Auth::check() && Auth::user()->id == $anuncio->user_id)
+                                <a class="justify-content-end link-danger" 
+                                href="{{route('destruir_anuncio', ['anuncio' => $anuncio]);}}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                    
+                    
+                </h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                     <i class="fa fa-map-marker"></i>
                     <span>

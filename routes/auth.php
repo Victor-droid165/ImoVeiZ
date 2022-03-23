@@ -101,6 +101,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
+
+    Route::get('/users/{user}', [RegisteredUserController::class,'destroy'])
+            ->name('destruir_user');
+    
+    Route::delete('/users/{user}', [RegisteredUserController::class,'destroy'])
+            ->name('destruir_user');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -109,7 +115,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/anuncios/criar', [AnuncioController::class,'store'])
                 ->name('criar_anuncio');
 
-    Route::delete('/anuncios/{id}', [AnuncioController::class,'destroy'])
+    Route::get('/anuncios/{anuncio}', [AnuncioController::class,'destroy'])
+                ->name('destruir_anuncio');
+
+    Route::delete('/anuncios/{anuncio}', [AnuncioController::class,'destroy'])
                 ->name('destruir_anuncio');
 
     Route::post('api/fetch-cidades', [EnderecoController::class, 'fetchCidade']);

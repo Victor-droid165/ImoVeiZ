@@ -9,6 +9,7 @@ use App\Http\Requests\AnunciosFormRequest;
 use App\Services\CriadorDeImovel;
 use App\Services\CriadorDeAnuncio;
 use Illuminate\Support\Facades\DB;
+use App\Providers\RouteServiceProvider;
 
 
 class AnuncioController extends Controller
@@ -30,8 +31,6 @@ class AnuncioController extends Controller
             $valor_min = $request->get('valor_min');
             $valor_max = $request->get('valor_max');
             $anuncios_id = DB::table('imoveis')->whereBetween('valor', [$valor_min, $valor_max]);
-            $request->query->remove('valor_min');
-            $request->query->remove('valor_max');
         }
 
         if($request->has('tipo')){
@@ -43,7 +42,6 @@ class AnuncioController extends Controller
                 $anuncios_id = $anuncios_id->whereIn('id', $ids);
             else
                 $anuncios_id = DB::table('imoveis')->whereIn('id', $ids);
-            $request->query->remove('tipo');
         }
 
         if($anuncios_id){
@@ -56,12 +54,14 @@ class AnuncioController extends Controller
         
         $keys = [];
         foreach($request->all() as $key=>$valor){
-            $operador = '=';
-            if($key == 'categoria')
-                $valor = ucfirst($valor);
-            else if($key == 'valor')
-                $operador = '>=';
-            array_push($keys, [$key, $operador, $valor]);
+            if($key !== 'valor_min' && $key !== 'valor_max' && $key !== 'tipo'){
+                $operador = '=';
+                if($key == 'categoria')
+                    $valor = ucfirst($valor);
+                else if($key == 'valor')
+                    $operador = '>=';
+                array_push($keys, [$key, $operador, $valor]);
+            }
         }
         
         if ($anuncios2)
@@ -168,6 +168,9 @@ class AnuncioController extends Controller
      */
     public function destroy(Anuncio $anuncio)
     {
-        //
+        if(!$anuncio->delete()){
+            return redirect()->back()->withErrors($anuncio->errors());
+        }
+        return redirect(RouteServiceProvider::HOME);
     }
 }

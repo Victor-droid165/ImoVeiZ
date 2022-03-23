@@ -3,6 +3,14 @@
 @section('body')
     <div class="container py-3">
         <div class="row justify-content-center">
+            @if(count(Request::all()) > 0)
+                <div class="col offset-5">
+                    <a role="button" href="{{route('anuncios')}}" class="btn btn-outline-info">
+                        <i class="fa fa-filter"> </i>
+                        Retirar filtros
+                    </a>
+                </div>
+            @endif
             @foreach($anuncios as $anuncio)
                 <div class="col-md-3 mb-3">
                     <div class="card text-center bg-bottom h-100">

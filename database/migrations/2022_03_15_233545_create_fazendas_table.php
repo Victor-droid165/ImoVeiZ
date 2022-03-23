@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('fazendas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('base_id')->unsigned();
             $table->boolean('casa')->default(false);
             $table->boolean('plantacoes')->default(false);
             $table->boolean('animais')->default(false);
+            $table->foreignId('base_id')->constrained('imoveis')->onDelete('cascade');
             $table->timestamps();
         });
     }

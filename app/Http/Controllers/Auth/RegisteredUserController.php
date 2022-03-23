@@ -51,4 +51,11 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function destroy(User $user){
+        if(!$user->delete()){
+            return redirect()->back()->withErrors($user->errors());
+        }
+        return redirect(RouteServiceProvider::HOME);
+    }
 }

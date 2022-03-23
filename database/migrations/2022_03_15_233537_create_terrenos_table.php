@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('terrenos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('base_id')->unsigned();
             $table->integer('frente')->unsigned();
             $table->integer('lado')->unsigned();
             $table->boolean('agua')->default(false);
             $table->boolean('luz')->default(false);
+            $table->foreignId('base_id')->constrained('imoveis')->onDelete('cascade');
             $table->timestamps();
         });
     }

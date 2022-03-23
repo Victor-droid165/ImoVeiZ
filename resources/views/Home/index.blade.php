@@ -32,15 +32,17 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="divider"></div>
-    <section class="pt-5 pb-5 section-style">
-      <div class="container">
-        @include('components.carrosel-cards', [
-          'anuncios'  => $vendas,
-          'categoria' => 'Venda'
-          ])
-      </div>
-    </section>
+    @if(count($vendas) > 0)
+      <div class="divider"></div>
+      <section class="pt-5 pb-5 section-style">
+        <div class="container">
+          @include('components.carrosel-cards', [
+            'anuncios'  => $vendas,
+            'categoria' => 'Venda'
+            ])
+        </div>
+      </section>
+    @endif
     <div class="divider"></div>
     <section class="pt-5 pb-5 section-style">
       <div class="container">
@@ -69,14 +71,16 @@
         </div>
       </div>
     </section>
-    <div class="divider"></div>
-    <section class="pt-5 pb-5 section-style">
-      <div class="container">
-        @include('components.carrosel-cards', [
-          'anuncios'  => $alugueis,
-          'categoria' => 'Aluguel'
-          ])
-      </div>
-    </section>
+    @if(count($alugueis) > 0)
+      <div class="divider"></div>
+      <section class="pt-5 pb-5 section-style">
+        <div class="container">
+          @include('components.carrosel-cards', [
+            'anuncios'  => $alugueis,
+            'categoria' => 'Aluguel'
+            ])
+        </div>
+      </section>
+    @endif
     <x-fab-button href="{{route('form_criar_anuncio')}}"></x-fab-button>
 @endsection

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('casas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('base_id')->unsigned();
             $table->integer('area_construida')->unsigned();
             $table->integer('area_terreno')->unsigned();
+            $table->foreignId('base_id')->constrained('imoveis')->onDelete('cascade');
             $table->timestamps();
         });
     }
